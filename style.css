@@ -729,188 +729,80 @@ h3 {
 /* Мобильная версия (до 768px) */
 @media (max-width: 768px) {
 
+    /* Общие отступы для секций, чтобы текст не "душил" */
     .section {
-        padding: 40px 0px 40px 0px;
+        padding: 50px 20px; /* Увеличим боковые отступы */
         text-align: center;
     }
 
-    /* 1. Скрываем фото в Hero и кнопку в хедере */
+    /* 1. Вместо удаления фото, давай сделаем его маленьким и круглым над текстом */
+    /* Это оживит мобильную версию, она перестанет быть просто "текстом на белом" */
+    .hero {
+        flex-direction: column-reverse; /* Текст будет под фото */
+        padding: 40px 0;
+    }
+
     .hero-image {
-        display: none !important;
+        display: block !important; /* Возвращаем фото */
+        margin-bottom: 24px;
     }
 
-    .btn-header {
-        display: none !important;
+    .hero-image img {
+        width: 140px; /* Делаем аккуратный аватар */
+        height: 140px;
+        border-radius: 50%; /* Круглое фото */
+        object-fit: cover;
+        border: 4px solid var(--pink); /* Розовая рамка подчеркнет стиль */
+        box-shadow: var(--shadow);
     }
 
-    /* 2. Центровка шапки */
+    /* 2. Улучшаем меню в хедере */
     .header {
-        flex-direction: column;
-        gap: 20px;
-        padding: 24px 0;
-        text-align: center;
+        padding: 20px 0;
     }
 
     .nav {
-        justify-content: center;
-        gap: 16px;
-        flex-wrap: wrap;
+        gap: 12px;
+        background: #fff; /* Делаем меню как отдельную плашку */
+        padding: 10px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        width: 100%;
     }
 
-    /* 3. Hero секция */
-    .hero {
-        padding: 20px 0;
-        justify-content: center;
-        text-align: center;
+    .nav-link {
+        font-size: 14px; /* Чуть мельче, чтобы влезло в ряд */
     }
 
-    .hero-text {
-        max-width: 100%;
-    }
-
-    /* 4. Сетки (Grids) в одну колонку */
+    /* 3. Карточки преимуществ */
     .benefits-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .price-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .price-row {
-        margin: 0;
-    }
-
-    .price-card,
-    .price-card.featured {
-        max-width: 100%;
-        max-height: none;
-        /* Разрешаем карточкам расти вниз по контенту */
-    }
-
-    .reviews-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* 5. Футер */
-    .footer {
-        padding: 50px 0 30px;
-    }
-
-    /* 6. Типографика */
-    h1 {
-        font-size: 24px;
-        line-height: 1.4;
-        margin-bottom: 18px;
-    }
-
-    h2.section-title {
-        font-size: 20px;
-        line-height: 1.2;
-    }
-
-    .benefit-card h3 {
-        max-width: 100%;
-    }
-
-    .btn {
-        font-size: 15px;
-        padding: 12px;
-    }
-
-    #contacts {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        /* Центрируем заголовок и подзаголовок */
-        text-align: center;
-    }
-
-    .social-grid {
-        display: flex;
-        flex-direction: column;
-        /* Выстраиваем карточки вертикально */
-        align-items: center;
-        /* Центрируем их по горизонтальной оси */
-        width: 100%;
-        /* Сетка занимает всю ширину контейнера */
-        gap: 12px;
-        /* Расстояние между карточками */
-    }
-
-    .social-card {
-        width: 100%;
-        /* Каждая карточка растягивается на весь body (с учетом отступов контейнера) */
-        max-width: 400px;
-        /* Ограничиваем максимальную ширину, чтобы на планшетах они не были слишком длинными */
-        justify-content: center;
-        /* Иконка и текст внутри карточки встают по центру */
-        padding: 18px;
-        /* Увеличиваем область нажатия для мобильных */
-    }
-
-    .price-list p {
-        line-height: 1.6;
-        margin-bottom: 14px;
-    }
-
-    .price-list li {
-        line-height: 1.5;
-        margin-bottom: 8px;
-    }
-
-    .footer {
-        margin-top: 60px;
-        padding: 50px 0 30px;
-    }
-
-    /* Перестраиваем верхнюю часть футера в колонку */
-    .footer-top {
-        flex-direction: column;
-        align-items: center;
-        /* Все по центру */
-        text-align: center;
-        gap: 40px;
-        padding-bottom: 30px;
-        margin-bottom: 30px;
-    }
-
-    .footer-nav {
-        flex-direction: column;
-        /* Ссылки меню друг под другом */
         gap: 16px;
     }
 
-    /* Нижняя часть футера (копирайт и разработчик) */
-    .footer-bottom {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        text-align: center;
+    .benefit-card {
+        padding: 30px 20px;
     }
 
-    .footer-dev {
-        margin: 0 auto;
-        /* Центрируем блок разработчика */
+    /* 4. Цены и отзывы */
+    .price-card {
+        padding: 24px;
+        min-height: auto; /* Убираем фиксированную высоту */
     }
 
-    .footer .btn-outline {
-        width: 100%;
-        /* Кнопка на всю ширину */
-        max-width: 300px;
+    .review-card {
+        padding: 20px;
+        text-align: left; /* Отзывы лучше читать с выравниванием по левому краю */
     }
 
-    .edu-list {
-        gap: 16px
+    /* 5. Кнопки */
+    .btn-main {
+        width: 100%; /* На мобильном кнопка на всю ширину удобнее для нажатия пальцем */
+        height: 56px; /* Чуть выше для удобства */
     }
 
-    .edu-item {
-        max-width: 100%;
-    }
-
-    .edu-item img {
-        display: none !important;
+    /* 6. Убираем лишние декоративные элементы, которые мешают */
+    .price-sep {
+        transform: rotate(90-deg); /* Разделитель цен лучше перевернуть или скрыть */
+        margin: 10px 0;
     }
 }
