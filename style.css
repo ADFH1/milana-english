@@ -814,6 +814,39 @@ h3 {
 }
 
 @media (max-width: 768px) {
+    /* Контейнер всей секции */
+    .hero {
+        display: flex !important;
+        flex-direction: column !important; /* Текст под фото */
+        align-items: center !important;
+        text-align: center !important;
+        padding-top: 20px !important;
+    }
+
+    /* Контейнер для фото */
+    .hero-image {
+        order: -1 !important; /* Гарантированно ставит фото ПЕРВЫМ */
+        margin-bottom: 20px !important;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    /* Само изображение: делаем кругом */
+    .hero-image img {
+        width: 160px !important;   /* Уменьшенный размер */
+        height: 160px !important;  /* Высота должна быть равна ширине для круга */
+        object-fit: cover !important; /* Чтобы лицо не сплющилось */
+        border-radius: 50% !important; /* Идеальный круг */
+        border: 3px solid #FFC0CB; /* Опционально: розовая рамка как в дизайне */
+    }
+
+    /* Исправление заголовка, чтобы он не прилипал к фото */
+    .hero-content h1 {
+        font-size: 24px !important;
+        margin-top: 10px !important;
+        line-height: 1.2 !important;
+    }
     body, html { overflow-x: hidden; }
     .container { padding: 0 16px; overflow-x: hidden; }
 
