@@ -1,0 +1,916 @@
+@font-face {
+    font-family: 'Martian Grotesk';
+    src: url('fonts/MartianGrotesk-StdRg.ttf') format('truetype');
+    font-weight: 500;
+    font-display: swap;
+}
+
+:root {
+    --pink: #FFC0CB;
+    --dark: #1E1E1E;
+    --text-main: #323232;
+    --bg-page: #F9FBFB;
+    --shadow: 0px 0px 28px rgba(255, 192, 203, 0.25);
+    --font-h: 'Martian Grotesk', sans-serif;
+    --font-b: 'Onest', sans-serif;
+}
+
+/* ОБНУЛЕНИЕ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-b);
+    background: var(--bg-page);
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1284px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ТИПОГРАФИКА (С ПРАВИЛЬНОЙ ЖИРНОСТЬЮ) */
+h1 {
+    font-family: var(--font-h);
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.5;
+    margin-bottom: 36px;
+}
+
+.section-title {
+    font-family: var(--font-h);
+    font-weight: 500;
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-family: var(--font-h);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.section-subtitle {
+    color: var(--text-main);
+    font-size: 16px;
+    max-width: 1284px;
+    margin-bottom: 48px;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+/* КНОПКИ */
+.btn {
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    /* Убираем все рамки, чтобы они не влияли на размер */
+    border: none;
+    /* Используем внутреннюю тень как имитацию рамки в обычном состоянии (прозрачную) */
+    box-shadow: inset 0 0 0 1px transparent, 0 0 0 rgba(0, 0, 0, 0);
+    /* Важно для стабильности размеров */
+    box-sizing: border-box;
+    padding: 12px 24px;
+    height: 48px;
+    /* Фиксируем высоту, чтобы исключить скачки */
+}
+
+.btn:hover {
+    /* Подъем на 5px */
+    transform: translateY(-5px);
+    /* Эффект рамки через внутреннюю тень (не расширяет кнопку) */
+    /* И эффект парящей тени под кнопкой (внешняя тень) */
+    box-shadow: inset 0 0 0 1px #D798A3, 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Специфические стили */
+.btn-header,
+.btn-main {
+    background: var(--pink);
+    color: var(--dark);
+    font-size: 16px;
+}
+
+/* КНОПКА С КОНТУРОМ (ДЛЯ ФУТЕРА) */
+.btn.btn-outline {
+    background: transparent;
+    /* Убираем фон */
+    color: var(--pink);
+    /* Текст становится розовым */
+    border: 1px solid var(--pink);
+    /* Только рамка */
+}
+
+.btn.btn-outline:hover {
+    background: var(--pink);
+    /* При наведении закрашивается */
+    color: var(--dark);
+    /* Текст темнеет */
+    box-shadow: 0 0 15px rgba(255, 192, 203, 0.4);
+}
+
+.btn-full {
+    width: 100%;
+    margin-top: auto;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 36px 0;
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    /* Центрирует иконку по вертикали относительно двух строк текста */
+    gap: 12px;
+    /* Расстояние между иконкой и текстом */
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    /* Текст внутри остается друг под другом */
+    gap: 2px;
+    /* Расстояние между именем и подписью */
+}
+
+.logo-name {
+    font-family: var(--font-h);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.logo-sub {
+    color: var(--text-main);
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    /* Чтобы иконка не сжималась при узком экране */
+}
+
+/* --- ОБЩИЕ СТИЛИ ДЛЯ ВСЕХ ССЫЛОК (Хедер и Футер) --- */
+/* Возвращаем расстояние в хедере */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    /* Расстояние между ссылками в шапке */
+}
+
+/* Возвращаем расстояние в футере */
+.footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    /* Расстояние между ссылками в подвале */
+}
+
+/* Общие стили ссылок (чтобы ничего не съезжало) */
+.nav a,
+.footer-nav a {
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    /* Чтобы ссылки не переносились по словам */
+}
+
+.nav a,
+.footer-nav a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    position: relative;
+    padding: 6px 0;
+    display: inline-block;
+    transition: all 0.3s ease;
+    /* Плавный переход для цвета и линии */
+}
+
+/* Общая база для линии */
+.nav a::after,
+.footer-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.2s ease-out, background-color 0.2s ease;
+}
+
+/* --- ХЕДЕР: СЕРЫЙ ЦВЕТ (#9C9C9C) --- */
+.nav a {
+    color: var(--dark);
+    /* Исходный цвет в хедере */
+}
+
+.nav a::after {
+    background-color: #b3707c;
+    /* Цвет линии в хедере */
+}
+
+.nav a:hover {
+    color: #b3707c;
+    /* Цвет текста при наведении в хедере */
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* --- ФУТЕР: РОЗОВЫЙ ЦВЕТ (var(--pink)) --- */
+.footer-nav a {
+    color: var(--text-main);
+    /* Исходный цвет в футере */
+}
+
+.footer-nav a::after {
+    background-color: var(--pink);
+    /* Цвет линии в футере */
+}
+
+.footer-nav a:hover {
+    color: var(--pink);
+    /* Цвет текста при наведении в футере */
+}
+
+.footer-nav a:hover::after {
+    width: 100%;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 0;
+}
+
+.hero-text {
+    max-width: 747px;
+}
+
+.hero-desc {
+    font-size: 16px;
+    color: var(--text-main);
+    margin-bottom: 48px;
+    line-height: 1.6;
+}
+
+.hero-image img {
+    width: 425px;
+}
+
+/* ПРЕИМУЩЕСТВА */
+.section {
+    padding: 60px 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min(300px));
+    gap: 14px;
+}
+
+.benefit-card {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.benefit-card h3 {
+    max-width: 175px;
+}
+
+.benefit-icon {
+    margin-bottom: 12px;
+}
+
+.benefit-card p {
+    font-size: 16px;
+    color: var(--text-main);
+    margin-top: 12px;
+}
+
+/* ОБРАЗОВАНИЕ */
+.edu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.edu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.edu-info p {
+    color: var(--text-main);
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* ПЛАН ЗАНЯТИЯ (ЦЕНЫ) */
+.price-grid {
+    display: flex;
+    gap: 60px;
+    align-items: stretch;
+}
+
+.price-card {
+    background: white;
+    border-radius: 16px;
+    padding: 36px;
+    flex: 1;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    max-width: 616px;
+    min-height: 411px;
+}
+
+.price-card.featured {
+    outline: 2px solid var(--pink);
+    max-width: 343px;
+    min-height: 411px;
+}
+
+.price-content p {
+    color: var(--text-main);
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.price-list ul {
+    list-style: none;
+}
+
+.price-list li {
+    line-height: 1.6;
+}
+
+.price-list p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid #EFEFEF;
+}
+
+.price-item {
+    text-align: center;
+    flex: 1;
+}
+
+.price-val {
+    display: block;
+    font-size: 22px;
+    color: #b3707c;
+    font-weight: 600;
+    font-family: var(--font-b);
+}
+
+.price-sep {
+    width: 24px;
+}
+
+/* ОТЗЫВЫ: Сетка 3 в ряд */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Ровно 3 колонки */
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.review-card {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-out;
+    border: 1px solid transparent;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    border: 1px solid var(--pink);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.review-date,
+.review-footer {
+    font-size: 13px;
+    color: #9C9C9C;
+}
+
+.review-footer {
+    margin-top: 12px;
+}
+
+.stars {
+    color: #FFB800;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #F0F0F0;
+    /* Фон, если нет фото */
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-meta strong {
+    display: block;
+    font-family: var(--font-h);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+/* --- БЛОК КОНТАКТЫ --- */
+.social-grid {
+    display: grid;
+    /* Создаем 4 колонки, которые делят место поровну (1fr) */
+    grid-template-columns: repeat(4, 1fr);
+    /* Устанавливаем требуемый gap */
+    gap: 18px;
+    width: 100%;
+}
+
+.social-card {
+    background: white;
+    /* Убираем width: auto, теперь ширину диктует сетка grid */
+    padding: 20px 25px;
+    /* Немного увеличим padding для солидности */
+    border-radius: 15px;
+    box-shadow: 0px 0px 28px rgba(255, 192, 203, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #323232;
+    font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(255, 192, 203, 0.4);
+}
+
+.s-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* --- ФУТЕР ОСНОВНОЕ --- */
+.footer {
+    background: #1E1E1E;
+    color: white;
+    padding: 70px 0 40px;
+    margin-top: 80px;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 40px;
+}
+
+/* Белый текст логотипа в футере */
+.footer .logo-name,
+.footer .logo-sub {
+    color: white;
+}
+
+/* --- АНИМАЦИЯ ССЫЛОК В ФУТЕРЕ (РОЗОВАЯ) --- */
+.footer-nav {
+    display: flex;
+    gap: 32px;
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FFC0CB;
+    /* Розовый цвет линии */
+    transition: width 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #FFC0CB;
+    /* Текст становится розовым при наведении */
+}
+
+.footer-nav a:hover::after {
+    width: 100%;
+}
+
+/* --- НИЖНЯЯ ЧАСТЬ ФУТЕРА --- */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.copy-main {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.copy-sub {
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* Контейнер-ссылка */
+.footer-dev {
+    display: flex;
+    flex-direction: column;
+    /* Центрируем содержимое по горизонтали */
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    /* Убираем лишние отступы, если блок стоит в углу футера */
+    width: fit-content;
+    margin-left: auto;
+    /* Если нужно прижать весь блок к правому краю, оставьте это */
+}
+
+.dev-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+    /* Небольшой отступ до текста */
+    transition: filter 0.3s ease;
+}
+
+.dev-img {
+    display: block;
+    /* Укажите ширину, которая соответствует реальному размеру файла */
+    width: 150px;
+    height: auto;
+
+    /* ПРЕДОТВРАЩЕНИЕ РАЗМЫТИЯ */
+    image-rendering: -webkit-optimize-contrast;
+    /* Для Chrome/Safari */
+    image-rendering: crisp-edges;
+    /* Для Firefox */
+
+    /* Заставляем браузер рендерить пиксели четко, без сглаживания */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.footer-dev .copy-sub {
+    color: white;
+    font-size: 13px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    /* Убираем возможные системные зазоры шрифта */
+    line-height: 1.2;
+}
+
+/* --- HOVER ЭФФЕКТЫ --- */
+
+.footer-dev:hover .dev-icon-wrapper {
+    /* Розовое свечение строго по контуру букв логотипа */
+    filter: drop-shadow(0 0 10px rgba(255, 192, 203, 0.5));
+}
+
+.footer-dev:hover .copy-sub {
+    color: #FFC0CB;
+    /* Ваш розовый */
+    opacity: 1;
+}
+
+/* Эффект клика без размытия */
+.footer-dev:active {
+    opacity: 0.8;
+    transform: translateY(1px);
+}
+
+
+/* --- АДАПТИВНАЯ ВЕРСТКА (МЕДИА-ЗАПРОСЫ) --- */
+
+/* Планшетная версия (до 1024px) */
+@media (max-width: 1024px) {
+
+    .btn-header {
+        display: none !important;
+    }
+
+    .header.container {
+        padding: 36px;
+    }
+
+    .hero {
+        padding: 60px 0;
+        gap: 30px;
+    }
+
+    .hero-image img {
+        width: 320px;
+    }
+
+    .price-grid {
+        gap: 24px;
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 колонки вместо 3 */
+    }
+
+    .footer {
+        padding: 60px 0 40px;
+    }
+
+    .footer-nav {
+        gap: 20px;
+        /* Сужаем расстояние между ссылками */
+    }
+
+    .footer .btn-outline {
+        padding: 10px 18px;
+        font-size: 14px;
+        /* Уменьшаем кнопку, чтобы влезла в ряд */
+    }
+}
+
+/* Мобильная версия (до 768px) */
+@media (max-width: 768px) {
+
+    .section {
+        padding: 40px 0px 40px 0px;
+        text-align: center;
+    }
+
+    /* 1. Скрываем фото в Hero и кнопку в хедере */
+    .hero-image {
+        display: none !important;
+    }
+
+    .btn-header {
+        display: none !important;
+    }
+
+    /* 2. Центровка шапки */
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px 0;
+        text-align: center;
+    }
+
+    .nav {
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    /* 3. Hero секция */
+    .hero {
+        padding: 20px 0;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    /* 4. Сетки (Grids) в одну колонку */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .price-row {
+        margin: 0;
+    }
+
+    .price-card,
+    .price-card.featured {
+        max-width: 100%;
+        max-height: none;
+        /* Разрешаем карточкам расти вниз по контенту */
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 5. Футер */
+    .footer {
+        padding: 50px 0 30px;
+    }
+
+    /* 6. Типографика */
+    h1 {
+        font-size: 24px;
+        line-height: 1.4;
+        margin-bottom: 18px;
+    }
+
+    h2.section-title {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .benefit-card h3 {
+        max-width: 100%;
+    }
+
+    .btn {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    #contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Центрируем заголовок и подзаголовок */
+        text-align: center;
+    }
+
+    .social-grid {
+        display: flex;
+        flex-direction: column;
+        /* Выстраиваем карточки вертикально */
+        align-items: center;
+        /* Центрируем их по горизонтальной оси */
+        width: 100%;
+        /* Сетка занимает всю ширину контейнера */
+        gap: 12px;
+        /* Расстояние между карточками */
+    }
+
+    .social-card {
+        width: 100%;
+        /* Каждая карточка растягивается на весь body (с учетом отступов контейнера) */
+        max-width: 400px;
+        /* Ограничиваем максимальную ширину, чтобы на планшетах они не были слишком длинными */
+        justify-content: center;
+        /* Иконка и текст внутри карточки встают по центру */
+        padding: 18px;
+        /* Увеличиваем область нажатия для мобильных */
+    }
+
+    .price-list p {
+        line-height: 1.6;
+        margin-bottom: 14px;
+    }
+
+    .price-list li {
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+
+    .footer {
+        margin-top: 60px;
+        padding: 50px 0 30px;
+    }
+
+    /* Перестраиваем верхнюю часть футера в колонку */
+    .footer-top {
+        flex-direction: column;
+        align-items: center;
+        /* Все по центру */
+        text-align: center;
+        gap: 40px;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+    }
+
+    .footer-nav {
+        flex-direction: column;
+        /* Ссылки меню друг под другом */
+        gap: 16px;
+    }
+
+    /* Нижняя часть футера (копирайт и разработчик) */
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-dev {
+        margin: 0 auto;
+        /* Центрируем блок разработчика */
+    }
+
+    .footer .btn-outline {
+        width: 100%;
+        /* Кнопка на всю ширину */
+        max-width: 300px;
+    }
+
+    .edu-list {
+        gap: 16px
+    }
+
+    .edu-item {
+        max-width: 100%;
+    }
+
+    .edu-item img {
+        display: none !important;
+    }
+}
