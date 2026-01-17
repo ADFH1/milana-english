@@ -726,83 +726,109 @@ h3 {
     }
 }
 
-/* Мобильная версия (до 768px) */
 @media (max-width: 768px) {
+    /* 1. Глобальные отступы: даем тексту дышать */
+    .container {
+        padding: 0 16px; /* Уменьшаем боковые поля, чтобы влезло больше контента */
+    }
 
-    /* Общие отступы для секций, чтобы текст не "душил" */
     .section {
-        padding: 50px 20px; /* Увеличим боковые отступы */
+        padding: 40px 0;
         text-align: center;
     }
 
-    /* 1. Вместо удаления фото, давай сделаем его маленьким и круглым над текстом */
-    /* Это оживит мобильную версию, она перестанет быть просто "текстом на белом" */
-    .hero {
-        flex-direction: column-reverse; /* Текст будет под фото */
-        padding: 40px 0;
-    }
-
-    .hero-image {
-        display: block !important; /* Возвращаем фото */
-        margin-bottom: 24px;
-    }
-
-    .hero-image img {
-        width: 140px; /* Делаем аккуратный аватар */
-        height: 140px;
-        border-radius: 50%; /* Круглое фото */
-        object-fit: cover;
-        border: 4px solid var(--pink); /* Розовая рамка подчеркнет стиль */
-        box-shadow: var(--shadow);
-    }
-
-    /* 2. Улучшаем меню в хедере */
+    /* 2. ШАПКА: исправляем вылет навигации */
     .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
         padding: 20px 0;
     }
 
     .nav {
+        display: flex;
+        flex-wrap: wrap; /* Разрешаем ссылкам переноситься на вторую строку */
+        justify-content: center;
         gap: 12px;
-        background: #fff; /* Делаем меню как отдельную плашку */
-        padding: 10px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         width: 100%;
     }
 
     .nav-link {
-        font-size: 14px; /* Чуть мельче, чтобы влезло в ряд */
+        font-size: 14px;
     }
 
-    /* 3. Карточки преимуществ */
-    .benefits-grid {
+    /* 3. HERO: Уменьшаем гигантский заголовок */
+    h1 {
+        font-size: 24px !important; /* На скриншоте он слишком большой */
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    .hero {
+        padding: 20px 0;
+    }
+
+    .hero-image {
+        display: flex !important; /* Возвращаем фото */
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .hero-image img {
+        width: 160px; /* Делаем аккуратный размер */
+        height: auto;
+    }
+
+    /* 4. ЦЕНЫ: Исправляем обрезание карточек */
+    .price-grid {
+        display: flex;
+        flex-direction: column; /* Карточки строго друг под другом */
         gap: 16px;
+        width: 100%;
     }
 
-    .benefit-card {
-        padding: 30px 20px;
-    }
-
-    /* 4. Цены и отзывы */
     .price-card {
-        padding: 24px;
-        min-height: auto; /* Убираем фиксированную высоту */
+        max-width: 100% !important;
+        min-height: auto !important;
+        padding: 24px 16px;
     }
 
-    .review-card {
-        padding: 20px;
-        text-align: left; /* Отзывы лучше читать с выравниванием по левому краю */
+    .price-row {
+        flex-direction: row; /* Оставляем цены в ряд, но уменьшаем шрифт */
+        justify-content: space-around;
     }
 
-    /* 5. Кнопки */
-    .btn-main {
-        width: 100%; /* На мобильном кнопка на всю ширину удобнее для нажатия пальцем */
-        height: 56px; /* Чуть выше для удобства */
+    .price-val {
+        font-size: 18px;
     }
 
-    /* 6. Убираем лишние декоративные элементы, которые мешают */
-    .price-sep {
-        transform: rotate(90-deg); /* Разделитель цен лучше перевернуть или скрыть */
-        margin: 10px 0;
+    /* 5. СОЦСЕТИ: в две колонки или в одну */
+    .social-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* На узких экранах лучше в одну колонку */
+        gap: 10px;
+    }
+
+    .social-card {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 6. ФУТЕР: исправляем наложение элементов */
+    .footer-top {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-dev {
+        margin: 0 auto;
     }
 }
