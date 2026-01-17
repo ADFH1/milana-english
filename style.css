@@ -26,6 +26,35 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Общий сброс для всех сеток */
+.reviews-grid, 
+.price-grid, 
+.social-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+/* Исправление самих карточек */
+.review-card, 
+.price-card, 
+.social-card {
+    width: 100% !important; /* Занимать всю ширину контейнера */
+    max-width: 100% !important;
+    min-width: 0 !important; /* Важно: разрешает сжиматься */
+    box-sizing: border-box !important; /* Учитывает padding в ширине */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important; /* Полностью скрывает горизонтальный скролл */
+    position: relative;
+}
+
 body {
     font-family: var(--font-b);
     background: var(--bg-page);
@@ -529,6 +558,36 @@ h3 {
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+/* Контейнер футера */
+.footer-top, 
+.footer-bottom {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 20px !important;
+}
+
+/* Список ссылок (теги) в футере */
+.footer-nav {
+    display: flex !important;
+    flex-direction: column !important; /* Складываем в столбик */
+    gap: 10px !important;
+    width: 100% !important;
+}
+
+/* Логотип разработчика (tsyndesign) */
+.footer-dev {
+    margin: 20px auto 0 !important; /* Центрируем */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.footer-dev span, 
+.footer-dev img {
+    text-align: center !important;
 }
 
 /* --- ФУТЕР ОСНОВНОЕ --- */
